@@ -3,7 +3,7 @@ __author__ = "sjlu"
 import imghdr
 from PIL import Image
 from os import listdir
-from os.path import isdir, isfile, join, abspath
+from os.path import isdir, isfile, join, abspath, dirname
 
 from flask import Flask, render_template
 from flask.ext.assets import Environment as Assets, Bundle
@@ -18,7 +18,7 @@ assets.auto_build = True
 
 # Helper functions
 def list_projects():
-  path = './static/img/projects/'
+  path = join(dirname(abspath(__file__)), 'static/img/projects/')
   directories = [item for item in listdir(path) if isdir(join(path, item))]
   directories_and_files = []
 
@@ -44,7 +44,7 @@ def list_projects():
 
     projects.append({
       'name': d.replace('_', ' ').title(),
-      'path': directory_path.replace('./static/', ''),
+      'path': directory_path.replace(join(dirname(abspath(__file__)), 'static/'), ''),
       'files': {
         'horizontal': horizontal,
         'vertical': vertical
