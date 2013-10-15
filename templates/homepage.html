@@ -1,4 +1,16 @@
 {% extends "base.html" %}
 {% block body %}
-  <div class="container"></div>
+  <div id="homepage" class="container">
+    <div id="header">
+      <div class="avatar">
+        <img src="{{ url_for('static', filename='img/avatar.jpg') }}" />
+      </div>
+      <div class="name">
+        Joy Sun
+      </div>
+      <div class="tagline">
+        Photographing human expressions one person at a time.
+      </div>
+    </div>
+  </div>
 {% endblock %}
