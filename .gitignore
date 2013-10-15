@@ -1,0 +1,13 @@
+# OSX Related ignores
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+
+# Application related ignores
+static/.webassets-cache
+static/styles.css
+static/app.js

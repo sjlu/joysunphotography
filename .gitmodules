@@ -1,0 +1,6 @@
+[submodule "static/vendor/twitter-bootstrap"]
+	path = static/vendor/twitter-bootstrap
+	url = https://github.com/twbs/bootstrap.git
+[submodule "static/vendor/jquery"]
+	path = static/vendor/jquery
+	url = https://github.com/components/jquery
