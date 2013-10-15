@@ -26,12 +26,9 @@
     <hr />
     <div id="portfolios">
       <div class="row">
-        <img class="img-responsive img-rounded col-md-12" src="{{ url_for('static', filename='img/black_and_white/image1.jpg') }}" />
-        <img class="img-responsive img-rounded col-md-4" src="{{ url_for('static', filename='img/black_and_white/image3.jpg') }}" />
-        <img class="img-responsive img-rounded col-md-4" src="{{ url_for('static', filename='img/black_and_white/image4.jpg') }}" />
-        <img class="img-responsive img-rounded col-md-4" src="{{ url_for('static', filename='img/black_and_white/image5.jpg') }}" />
-        <img class="img-responsive img-rounded col-md-6" src="{{ url_for('static', filename='img/black_and_white/image2.jpg') }}" />
-        <img class="img-responsive img-rounded col-md-6" src="{{ url_for('static', filename='img/black_and_white/image6.jpg') }}" />
+        {% for p in projects %}
+          <img class="img-responsive img-rounded col-md-12" src="{{ url_for('static', filename='%s/%s' % (p.path, p.files.horizontal[0])) }}" />
+        {% endfor %}
       </div>
     </div>
   </div>
