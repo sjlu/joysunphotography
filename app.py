@@ -1,6 +1,7 @@
 __author__ = "sjlu"
 
 import imghdr
+import re
 from PIL import Image
 from os import listdir
 from os.path import isdir, isfile, join, abspath, dirname
@@ -42,9 +43,11 @@ def list_projects():
       else:
         vertical.append(f)
 
+    print re.sub('.*static/', '', directory_path)
+  
     projects.append({
       'name': d.replace('_', ' ').title(),
-      'path': directory_path.replace(join(dirname(abspath(__file__)), 'static/'), ''),
+      'path': re.sub('.*static/', '', directory_path),
       'files': {
         'horizontal': horizontal,
         'vertical': vertical
