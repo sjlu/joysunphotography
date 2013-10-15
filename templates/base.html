@@ -13,6 +13,8 @@
     href="{{ url_for('static', filename='vendor/twitter-bootstrap/dist/css/bootstrap.min.css') }}" />
   <script type="text/javascript"
     src="{{ url_for('static', filename='vendor/twitter-bootstrap/dist/js/bootstrap.min.js') }}"></script>
+  <link rel="stylesheet" type="text/css"
+    href="{{ url_for('static', filename='vendor/font-awesome/css/font-awesome.min.css') }}" />
 
   {% assets filters="less", depends="less/*.less", output="styles.css", "less/base.less" %}
     <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}" />
@@ -23,7 +25,9 @@
 </head>
 <body>
   {% block body %}{% endblock %}
-
+  <div id="footer">
+    &copy; 2013 Joy Sun
+  </div>
   <script type="text/javascript" src="//use.typekit.net/geq2gwt.js"></script>
   <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
   <!-- This site was made with love from Steven Lu (stevenlu.com) -->

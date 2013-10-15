@@ -4,3 +4,6 @@
 [submodule "static/vendor/jquery"]
 	path = static/vendor/jquery
 	url = https://github.com/components/jquery
+[submodule "static/vendor/font-awesome"]
+	path = static/vendor/font-awesome
+	url = https://github.com/FortAwesome/Font-Awesome.git
