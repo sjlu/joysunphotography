@@ -27,7 +27,7 @@
     <div id="portfolios">
       <div class="row">
         {% for p in projects %}
-          <a class="col-sm-12 col-md-6" href="{{ url_for('project', project_id=p.canonical) }}">
+          <a class="col-sm-12 col-md-6" href="">
             <div class="portfolio">
               <img class="img-responsive" src="{{ url_for('static', filename='%s/%s' % (p.path, p.files.horizontal[0])) }}" />
               <div class="overlay"></div>
