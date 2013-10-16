@@ -43,10 +43,9 @@ def list_projects():
       else:
         vertical.append(f)
 
-    print re.sub('.*static/', '', directory_path)
-  
     projects.append({
-      'name': d.replace('_', ' ').title(),
+      'name': d.replace('_', ' ').replace(' and ', ' & ').title(),
+      'canonical': d,
       'path': re.sub('.*static/', '', directory_path),
       'files': {
         'horizontal': horizontal,
@@ -60,6 +59,13 @@ def list_projects():
 @app.route("/")
 def index():
   return render_template('homepage.html', projects=list_projects())
+
+@app.route("/<project_id>")
+def project(project_id):
+  projects = list_projects()
+  project = next((p for p in projects if p['canonical'] == project_id), None)
+
+  return render_template('project.html', project=project)
 
 # Execute
 if __name__ == "__main__":

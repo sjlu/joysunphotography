@@ -27,9 +27,25 @@
     <div id="portfolios">
       <div class="row">
         {% for p in projects %}
-          <img class="img-responsive img-rounded col-md-12" src="{{ url_for('static', filename='%s/%s' % (p.path, p.files.horizontal[0])) }}" />
+          <a class="col-sm-12 col-md-6" href="{{ url_for('project', project_id=p.canonical) }}">
+            <div class="portfolio">
+              <img class="img-responsive" src="{{ url_for('static', filename='%s/%s' % (p.path, p.files.horizontal[0])) }}" />
+              <div class="overlay"></div>
+              <div class="title">
+                {{p.name}}
+                <div class="bar"></div>
+              </div>
+            </div>
+          </a>
         {% endfor %}
       </div>
     </div>
   </div>
+{% endblock %}
+{% block scripts %}
+  <script type="text/javascript">
+    $(document).ready(function() {
+      new Homepage();
+    });
+  </script>
 {% endblock %}
