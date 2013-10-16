@@ -3,7 +3,14 @@
   <div id="project" class="container">
     <div id="photos">
       <div class="row">
-
+        {% for layout in project.layouts %}
+          {% set class = 'col-md-' ~ (12 / (layout|length))|int %}
+          {% for image in layout %}
+            <div class="{{class}}">
+              <img class="img-responsive" src="{{ url_for('static', filename='%s/%s' % (project.path, image)) }}" />
+            </div>
+          {% endfor %}
+        {% endfor %}
       </div>
     </div>
   </div>

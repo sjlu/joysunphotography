@@ -5,7 +5,7 @@ Homepage = (function() {
     var images = [];
     var viewport_height = $(window).height();
 
-    var regen = _.debounce(function() {
+    var regen = function() {
       images = _.map($('.portfolio'), function(image) {
         var image_position = $(image).offset();
         var image_height = $(image).height();
@@ -22,11 +22,11 @@ Homepage = (function() {
       });
 
       viewport_height = $(window).height();
-    }, 250);
+    };
+    $(window).resize(_.debounce(regen, 250));
     $('.portfolio img').load(regen);
-    $(window).resize(regen);
 
-    $(window).scroll(_.throttle(function() {
+    var detect = function() {
       var window_top = $(window).scrollTop();
       var window_bottom = window_top + viewport_height;
 
@@ -49,13 +49,17 @@ Homepage = (function() {
         }
 
         var viewed_height = bottom - top;
-        if ((viewed_height / viewport_height) > 0.5) {
+        if ((viewed_height / viewport_height) > 0.45) {
           return $(image.image).addClass('visible');
         }
 
         return $(image.image).removeClass('visible');
       });
-    }, 100));
+    };
+    $(window).scroll(_.throttle(detect, 100));
+    $('.portfolio img').load(detect);
+    detect();
+
   }
 
   return Homepage;
