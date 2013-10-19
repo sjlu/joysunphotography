@@ -3,10 +3,14 @@ __author__ = "sjlu"
 import imghdr
 import re
 import os
-
+import PIL
 from PIL import Image
+
 from flask import Flask, render_template
 from flask.ext.assets import Environment as Assets, Bundle
+
+# Config
+path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static/img/projects/')
 
 # Initialize
 app = Flask(__name__)
@@ -17,23 +21,56 @@ assets = Assets(app)
 assets.auto_build = True
 
 # Helper functions
-def make_layout(images):
+def make_layout(images, path):
   layouts = []
   number_set = range(2, 5)
-  currently_at = 0
-  while currently_at < len(images):
-    layout = []
+  while len(images):
+    layout = {
+      "width": 0,
+      "height": 0,
+      "images": []
+    }
     num = len(images) if len(images) < 4 else number_set.pop(0)
-    for n in range(currently_at, num):
-      layout.append(images[n])
-    currently_at += num
+    dimensions = []
+    for n in range(0, num):
+      image = images.pop(0)
+      layout['images'].append(image)
+
+      # calculating averages
+      image_details = Image.open(os.path.join(path, image))
+      dimensions.append({
+        'width': image_details.size[0],
+        'height': image_details.size[1]
+      })
+
+      average_width = sum(x['width'] for x in dimensions) / len(dimensions)
+      average_height = sum(x['height'] for x in dimensions) / len(dimensions)
+
+      key = 'height'
+      if average_width > average_height:
+        key = 'width'
+
+      min_dimension = min(dimensions, key=lambda x: x[key])
+
+      layout['width'] = min_dimension['width']
+      layout['height'] = min_dimension['height']
+
+    for image in layout['images']:
+      image_handler = Image.open(os.path.join(path, image))
+
+      if image_handler.size[0] == layout['width'] and image_handler.size[1] == layout['height']:
+        continue
+
+      resized_image_handler = image_handler.resize((layout['width'], layout['height']), Image.ANTIALIAS)
+      resized_image_handler.save(os.path.join(path, image))
+
     number_set.append(num)
     layouts.append(layout)
+
   return layouts
 
 def list_projects():
   # Look for project folders
-  path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static/img/projects/')
   directories = [item for item in os.listdir(path) if os.path.isdir(os.path.join(path, item))]
   directories_and_files = []
 
@@ -60,8 +97,8 @@ def list_projects():
         vertical.append(f)
 
     # Create our layout.
-    vertical_layouts = make_layout(vertical)
-    horizontal_layouts = make_layout(horizontal)
+    vertical_layouts = make_layout(vertical[:], directory_path)
+    horizontal_layouts = make_layout(horizontal[:], directory_path)
     layouts = []
     currently_using = True
     while len(vertical_layouts) > 0 and len(horizontal_layouts) > 0:
@@ -80,7 +117,6 @@ def list_projects():
       'layouts': layouts
     })
 
-  print projects
   return projects
 
 # Preload this data.
