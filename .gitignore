@@ -16,3 +16,6 @@ static/.webassets-cache
 static/styles.css
 static/app.js
 .elasticbeanstalk/
+
+# project related ignores
+thumbnail.jpg
