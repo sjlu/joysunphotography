@@ -81,6 +81,8 @@ def list_projects():
     directory_path = os.path.join(path, d)
     files = []
     for f in os.listdir(directory_path):
+      if f == 'thumnail.jpg':
+        continue
       is_file = os.path.isfile(os.path.join(directory_path, f))
       is_image = imghdr.what(os.path.join(directory_path, f))
       if is_file and is_image:
