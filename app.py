@@ -76,6 +76,7 @@ def list_projects():
 
   # Walk through each directory to find photos
   projects = []
+  thumbnail_dimensions = []
   for d in directories:
     directory_path = os.path.join(path, d)
     files = []
@@ -109,13 +110,28 @@ def list_projects():
       currently_using = not currently_using
     layouts += vertical_layouts + horizontal_layouts
 
+    image = Image.open(os.path.join(directory_path, horizontal[0]))
+
+    thumbnail_dimensions.append({
+      'width': image.size[0],
+      'height': image.size[1]
+    })
+
     projects.append({
       'name': d.replace('_', ' ').replace(' and ', ' & ').title(),
       'canonical': d,
       'path': re.sub('.*static/', '', directory_path),
-      'thumbnail': horizontal[0],
+      'real_path': directory_path,
+      'thumbnail': image, # temporary
       'layouts': layouts
     })
+
+  min_dimension = min(thumbnail_dimensions, key=lambda x: x['width'])
+
+  for project in projects:
+    image = project['thumbnail'].resize((min_dimension['width'], min_dimension['height']), Image.ANTIALIAS)
+    image.save(os.path.join(project['real_path'], 'thumbnail.jpg'))
+    project['thumbnail'] = 'thumbnail.jpg'
 
   return projects
 
