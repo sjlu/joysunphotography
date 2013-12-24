@@ -23,8 +23,9 @@ Homepage = (function() {
 
       viewport_height = $(window).height();
     };
+
     $(window).resize(_.debounce(regen, 250));
-    $('.portfolio img').load(regen);
+    regen();
 
     var detect = function() {
       var window_top = $(window).scrollTop();
@@ -56,8 +57,8 @@ Homepage = (function() {
         return $(image.image).removeClass('visible');
       });
     };
+
     $(window).scroll(_.throttle(detect, 100));
-    $('.portfolio img').load(detect);
     detect();
 
   }
