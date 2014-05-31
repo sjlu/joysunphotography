@@ -1,21 +1,2 @@
-# OSX Related ignores
-.DS_Store
-.AppleDouble
-.LSOverride
-Icon
-._*
-.Spotlight-V100
-.Trashes
-
-# Python related ignores
-venv
-*.pyc
-
-# Application related ignores
-static/.webassets-cache
-static/styles.css
-static/app.js
-.elasticbeanstalk/
-
-# project related ignores
-thumbnail.jpg
+public/bower_components/*
+node_modules/*

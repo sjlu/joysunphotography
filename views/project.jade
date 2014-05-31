@@ -1,0 +1,29 @@
+extends layout
+
+block body
+  div#mini-header.fixed
+    div.container
+      div.row
+        div.col-sm-4.hidden-xs.left
+          .mini-container
+            a(href="/")
+              span.back
+                span.icon-circle-arrow-left
+                span.text
+                  | Back to Homepage
+        div.col-sm-4.center
+          .title
+            = project.name
+        div.col-sm-4.hidden-xs.right
+          div.mini-container
+            span.name
+              | Joy Sun
+            span.avatar
+              img(src="/images/avatar.jpg")
+  div#project.container
+    div#photos
+      div.row
+        - each layout in project.layouts
+          - each image in layout.images
+            div(class="#{layout.cssClass}")
+              img.img-responsive(src="/images/projects/" + project.canonical + "/" + image.name)

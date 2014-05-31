@@ -1,0 +1,33 @@
+extends layout
+
+block body
+  div#homepage.container
+    div#header
+      div.avatar
+        img(src="images/avatar.jpg")
+      div.name
+        | Joy Sun
+      div.tagline
+        | Photographing human expressions one moment at a time.
+      div.social
+        a(href="https://www.facebook.com/Joysunphoto")
+          i.fa.fa-facebook
+        a(href="http://instagram.com/joysunphotography")
+          i.fa.fa-instagram
+        a(href="mailto:joy@joysunphotography.com")
+          i.fa.fa-envelope
+      hr
+    div#portfolios
+      div.row
+        - each project in projects
+          a.col-sm-12.col-md-6(href="/project/" + project.canonical)
+            div.portfolio
+              img.img-responsive(src="/images/projects/" + project.canonical + "/thumbnail.jpg")
+              div.overlay
+              div.title
+                = project.name
+
+block scripts
+  script(type="text/javascript" src="/javascripts/homepage.js")
+  script(type="text/javascript")
+    | $(document).ready(function() { new Homepage(); });
