@@ -1,7 +1,6 @@
 extends layout
 
 block body
-  = JSON.stringify(project)
   div#mini-header.fixed
     div.container
       div.row
@@ -27,4 +26,4 @@ block body
         - each layout in project.layouts
           - each image in layout.images
             div(class="#{layout.cssClass}")
-              img.img-responsive(src="/images/projects/" + project.canonical + "/" + image.name)
+              img.img-responsive(src=image.path.replace('./public', ''))
