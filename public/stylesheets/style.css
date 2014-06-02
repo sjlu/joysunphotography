@@ -7494,6 +7494,7 @@ hr {
 }
 #homepage #header .social a {
   color: #a3a3a3;
+  margin: 0 10px;
   -moz-transition: color 0.25s ease;
   -o-transition: color 0.25s ease;
   -webkit-transition: color 0.25s ease;
@@ -7610,7 +7611,7 @@ hr {
 #mini-header .back {
   cursor: pointer;
 }
-#mini-header .back .icon-circle-arrow-left,
+#mini-header .back .fa-arrow-circle-left,
 #mini-header .back .text {
   vertical-align: middle;
   line-height: 45px;
@@ -7619,7 +7620,7 @@ hr {
   -webkit-transition: all 0.25s ease;
   transition: all 0.25s ease;
 }
-#mini-header .back .icon-circle-arrow-left {
+#mini-header .back .fa-arrow-circle-left {
   line-height: 45px;
   font-size: 20px;
 }
@@ -7627,7 +7628,7 @@ hr {
   font-size: 14px;
   margin-left: 5px;
 }
-#mini-header .back:hover .icon-circle-arrow-left {
+#mini-header .back:hover .fa-arrow-circle-left {
   margin-left: -5px;
 }
 #mini-header .back:hover .text {
