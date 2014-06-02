@@ -10,7 +10,6 @@ var projects = JSON.parse(fs.readFileSync('./build/projects.json', {
 /* GET home page. */
 router.get('/', function(req, res) {
   res.render('index', { projects: projects });
-  console.log(projects);
 });
 
 router.get('/project/:project', function(req, res) {
