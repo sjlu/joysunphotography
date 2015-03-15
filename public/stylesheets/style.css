@@ -7479,7 +7479,11 @@ hr {
   font-weight: 600;
   line-height: 100px;
 }
+#homepage #header .name img {
+  max-width: 225px;
+}
 #homepage #header .tagline {
+  margin-top: 20px;
   text-align: center;
   font-family: "adobe-garamond-pro", serif;
   font-size: 22px;
