@@ -22,8 +22,8 @@ block body
               img(src="/images/avatar.jpg")
   div#project.container
     div#photos
-      div.row
-        - each layout in project.layouts
+      - each layout in project.layouts
+        div.row
           - each image in layout.images
             div(class="#{layout.cssClass}")
               img.img-responsive(src=image.path.replace('./public', ''))
