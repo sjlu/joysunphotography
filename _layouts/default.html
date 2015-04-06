@@ -14,9 +14,15 @@
     <link href='//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/3.6.0/lodash.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="http://luis-almeida.github.io/unveil/jquery.unveil.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $("img[data-src]").unveil();
+      });
+    </script>
   </head>
   <body>
     {{content}}
@@ -24,5 +30,6 @@
       <hr />
       &copy; 2015 Joy Sun
     </div>
+
   </body>
 </html>
