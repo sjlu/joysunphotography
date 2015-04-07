@@ -30,7 +30,8 @@ layout: default
     </div>
     <div id="portfolios">
       <div class="row">
-      {% for page in site.pages | sort:title %}
+      {% assign pages = site.pages | sort: 'title' %}
+      {% for page in pages %}
         {% if page.categories contains "project" %}
             <a class="col-sm-12 col-md-6" href="{{ page.url | prepend: site.baseurl }}">
               <div class="portfolio">
