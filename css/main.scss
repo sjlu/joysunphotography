@@ -123,11 +123,12 @@ hr {
 
         opacity: 0;
         -webkit-transform: translate3d(0, 0, 0);
-        transition: all 0.25s linear;
+        transition: all 0.15s linear;
       }
 
       .overlay {
         background-color: black;
+        opacity: 0.35;
       }
 
       img {
@@ -146,16 +147,8 @@ hr {
         color: white;
         font-size: $height;
         line-height: $height;
-      }
 
-      &.visible {
-        .title {
-          opacity: 1;
-        }
-
-        .overlay {
-          opacity: 0.35;
-        }
+        opacity: 1;
       }
 
       &:hover {
